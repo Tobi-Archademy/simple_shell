@@ -15,16 +15,13 @@ builtins_t check[] = {
 {"unsetenv", new_unsetenv},
 {NULL, NULL}
 };
-
 for (i = 0; check[i].f != NULL; i++)
 {
 if (_strcmpr(vars->av[0], check[i].name) == 0)
 break;
 }
 if (check[i].f != NULL)
-{
 check[i].f(vars);
-}
 return (check[i].f);
 }
 
@@ -36,7 +33,6 @@ return (check[i].f);
 void new_exit(vars_t *vars)
 {
 int status;
-
 if (_strcmpr(vars->av[0], "exit") == 0 && vars->av[1] != NULL)
 {
 status = _atoi(vars->av[1]);
@@ -85,7 +81,6 @@ void new_setenv(vars_t *vars)
 {
 char **key;
 char *var;
-
 if (vars->av[1] == NULL || vars->av[2] == NULL)
 {
 print_error(vars, ": Incorrect number of arguments\n");
@@ -94,9 +89,7 @@ return;
 }
 key = find_key(vars->env, vars->av[1]);
 if (key == NULL)
-{
 add_key(vars);
-}
 else
 {
 var = add_value(vars->av[1], vars->av[2]);
@@ -124,9 +117,7 @@ vars->status = 0;
 void new_unsetenv(vars_t *vars)
 {
 char **key, **newenv;
-
 unsigned int i, j;
-
 if (vars->av[1] == NULL)
 {
 print_error(vars, ": Incorrect number of arguments\n");
@@ -149,13 +140,9 @@ vars->status = 127;
 new_exit(vars);
 }
 for (i = 0; vars->env[i] != *key; i++)
-{
 newenv[i] = vars->env[i];
-}
 for (j = i + 1; vars->env[j] != NULL; j++, i++)
-{
 newenv[i] = vars->env[j];
-}
 newenv[i] = NULL;
 free(*key);
 free(vars->env);
