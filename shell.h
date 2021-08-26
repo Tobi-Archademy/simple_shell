@@ -20,16 +20,17 @@
  * @count: count of commands entered
  * @argv: arguments at opening of shell
  * @status: exit status
+ * @commands: number of instructions entered
  */
 typedef struct variables
 {
-  char **av;
-  char *buffer;
-  char **env;
-  size_t count;
-  char **argv;
-  int status;
-  char **commands;
+char **av;
+char *buffer;
+char **env;
+size_t count;
+char **argv;
+int status;
+char **commands;
 } vars_t;
 
 /**
@@ -39,8 +40,8 @@ typedef struct variables
  */
 typedef struct builtins
 {
-  char *name;
-  void (*f)(vars_t *);
+char *name;
+void (*f)(vars_t *);
 } builtins_t;
 
 char **make_env(char **env);

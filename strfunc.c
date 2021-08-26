@@ -99,7 +99,7 @@ for (len2 = 0; strc2[len2]; len2++)
 ;
 }
 new_len = len1 + len2 + 2;
-newstring = malloc(new_len * sizeof(char));
+newstring = malloc(new_len *sizeof(char));
 if (newstring == NULL)
 {
 return (NULL);
